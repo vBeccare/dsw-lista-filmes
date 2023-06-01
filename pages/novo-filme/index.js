@@ -20,7 +20,7 @@ const NovoFilme = ({ setAddedMovie }) => {
     <div className="container">
       <h1>Novo Filme</h1>
       <div novalidate>
-        <div class="mb-3">
+        <div className="mb-3">
           <label htmlFor="titulo" className="form-label">
             Título
           </label>
@@ -32,7 +32,7 @@ const NovoFilme = ({ setAddedMovie }) => {
             onChange={(e) => setTitulo(e.target.value)}
             className={`form-control ${!!tituloErro && `is-invalid`}`}
           />
-          <div class="invalid-feedback">{tituloErro}</div>
+          <div className="invalid-feedback">{tituloErro}</div>
         </div>
 
         <label htmlFor="genero">Gênero</label>
@@ -54,7 +54,7 @@ const NovoFilme = ({ setAddedMovie }) => {
           <option value="Suspense">Suspense</option>
           <option value="Terror">Terror</option>
         </select>
-        <div class="invalid-feedback">{generoErro}</div>
+        <div className="invalid-feedback">{generoErro}</div>
         <label htmlFor="anoLancamento">Ano de lançamento</label>
         <input
           type="text"
@@ -64,7 +64,7 @@ const NovoFilme = ({ setAddedMovie }) => {
           className={`form-control ${!!anoLancamentoErro && `is-invalid`}`}
           onChange={(e) => setAnoLancamento(e.target.value)}
         />
-        <div class="invalid-feedback">{anoLancamentoErro}</div>
+        <div className="invalid-feedback">{anoLancamentoErro}</div>
       </div>
       <div className={style.buttonAction}>
         <button onClick={handleCancel} className="btn btn-light">

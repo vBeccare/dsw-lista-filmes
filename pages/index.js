@@ -21,8 +21,8 @@ const Toast = () => {
       aria-live="assertive"
       aria-atomic="true"
     >
-      <div class="d-flex">
-        <div class="toast-body">Filme adicionado com sucesso!</div>
+      <div className="d-flex">
+        <div className="toast-body">Filme adicionado com sucesso!</div>
       </div>
     </div>
   );
@@ -51,6 +51,7 @@ const HomePage = ({ addedMovie, setAddedMovie }) => {
             {moviesList.map(({ titulo, genero, anoLancamento, id }) => {
               return (
                 <FilmeItem
+                  key={id}
                   titulo={titulo}
                   genero={genero}
                   ano={anoLancamento}
