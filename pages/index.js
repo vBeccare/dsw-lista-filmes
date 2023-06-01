@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import useHome from "./hooks/useHome";
 
 const FilmeItem = ({ titulo, genero, ano, id }) => {
@@ -14,7 +15,7 @@ const FilmeItem = ({ titulo, genero, ano, id }) => {
 const Toast = () => {
   return (
     <div
-      class="toast text-bg-primary  position-fixed top-0 end-0 p-3"
+      className="toast text-bg-primary  position-fixed top-0 end-0 p-3"
       role="alert"
       id="liveToast"
       aria-live="assertive"
@@ -27,14 +28,16 @@ const Toast = () => {
   );
 };
 
-const HomePage = () => {
-  const { listaFilmes, setFilmeAdicionado } = useHome();
+const HomePage = ({ addedMovie, setAddedMovie }) => {
+  const { moviesList } = useHome({ addedMovie, setAddedMovie });
+  const router = useRouter();
   return (
     <main className="container">
+      <Toast />
       <h1>Listagem de filmes</h1>
-      {listaFilmes.length === 0 && <p>Não há filmes cadastrados</p>}
+      {moviesList.length === 0 && <p>Não há filmes cadastrados</p>}
 
-      {listaFilmes.length > 0 && (
+      {moviesList.length > 0 && (
         <table className="table">
           <thead className="table-primary">
             <tr>
@@ -45,23 +48,25 @@ const HomePage = () => {
             </tr>
           </thead>
           <tbody>
-            {listaFilmes.map(({ titulo, genero, ano }, idx) => {
-              console.log({ idx });
+            {moviesList.map(({ titulo, genero, anoLancamento, id }) => {
               return (
-                <FilmeItem titulo={titulo} genero={genero} ano={ano} id={idx} />
+                <FilmeItem
+                  titulo={titulo}
+                  genero={genero}
+                  ano={anoLancamento}
+                  id={id}
+                />
               );
             })}
           </tbody>
         </table>
       )}
-      <Toast />
       <button
         className="btn btn-success"
-        onClick={() => setFilmeAdicionado(true)}
+        onClick={() => router.push("/novo-filme")}
       >
-        teste toast
+        Incluir novo
       </button>
-      <button className="btn btn-success">Incluir novo</button>
     </main>
   );
 };

@@ -2,7 +2,7 @@ import useNovoFilme from "./hooks/useNovoFilme";
 
 import style from "./style.module.css";
 
-const NovoFilme = () => {
+const NovoFilme = ({ setAddedMovie }) => {
   const {
     titulo,
     genero,
@@ -15,7 +15,7 @@ const NovoFilme = () => {
     tituloErro,
     generoErro,
     anoLancamentoErro,
-  } = useNovoFilme();
+  } = useNovoFilme({setAddedMovie});
   return (
     <div className="container">
       <h1>Novo Filme</h1>
@@ -30,9 +30,9 @@ const NovoFilme = () => {
             name="titulo"
             value={titulo}
             onChange={(e) => setTitulo(e.target.value)}
-            className={`form-control ${tituloErro && `is-invalid`}`}
+            className={`form-control ${!!tituloErro && `is-invalid`}`}
           />
-          <div class="invalid-feedback">Preencha o título</div>
+          <div class="invalid-feedback">{tituloErro}</div>
         </div>
 
         <label htmlFor="genero">Gênero</label>
@@ -40,31 +40,31 @@ const NovoFilme = () => {
           id="genero"
           name="genero"
           value={genero}
-          className={`form-select ${generoErro && `is-invalid`}`}
+          className={`form-select ${!!generoErro && `is-invalid`}`}
           onChange={(e) => setGenero(e.target.value)}
         >
           <option value="">Selecione</option>
-          <option value="acao">Ação</option>
-          <option value="aventura">Aventura</option>
-          <option value="comedia">Comédia</option>
-          <option value="drama">Drama</option>
-          <option value="fantasia">Fantasia</option>
-          <option value="ficcao">Ficção</option>
-          <option value="romance">Romance</option>
-          <option value="suspense">Suspense</option>
-          <option value="terror">Terror</option>
+          <option value="Acão">Ação</option>
+          <option value="Aventura">Aventura</option>
+          <option value="Comédia">Comédia</option>
+          <option value="Drama">Drama</option>
+          <option value="Fantasia">Fantasia</option>
+          <option value="Ficção">Ficção</option>
+          <option value="Romance">Romance</option>
+          <option value="Suspense">Suspense</option>
+          <option value="Terror">Terror</option>
         </select>
-        <div class="invalid-feedback">Selecione um gênero</div>
+        <div class="invalid-feedback">{generoErro}</div>
         <label htmlFor="anoLancamento">Ano de lançamento</label>
         <input
           type="text"
           id="anoLancamento"
           value={anoLancamento}
           name="anoLancamento"
-          className={`form-control ${anoLancamentoErro && `is-invalid`}`}
+          className={`form-control ${!!anoLancamentoErro && `is-invalid`}`}
           onChange={(e) => setAnoLancamento(e.target.value)}
         />
-        <div class="invalid-feedback">Preencha o ano de lançamento</div>
+        <div class="invalid-feedback">{anoLancamentoErro}</div>
       </div>
       <div className={style.buttonAction}>
         <button onClick={handleCancel} className="btn btn-light">
