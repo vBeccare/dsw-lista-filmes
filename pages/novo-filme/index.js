@@ -15,7 +15,7 @@ const NovoFilme = ({ setAddedMovie }) => {
     tituloErro,
     generoErro,
     anoLancamentoErro,
-  } = useNovoFilme({setAddedMovie});
+  } = useNovoFilme({ setAddedMovie });
   return (
     <div className="container">
       <h1>Novo Filme</h1>
@@ -67,7 +67,10 @@ const NovoFilme = ({ setAddedMovie }) => {
         <div className="invalid-feedback">{anoLancamentoErro}</div>
       </div>
       <div className={style.buttonAction}>
-        <button onClick={handleCancel} className="btn btn-light">
+        <button
+          onClick={handleCancel}
+          className={` ${style.button} btn btn-light`}
+        >
           Cancelar
         </button>
         <button onClick={handleSubmit} className="btn btn-success">
